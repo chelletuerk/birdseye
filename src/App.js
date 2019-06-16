@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
+import SignInSide from './SignInSide'
 
 function App() {
   return (
-    <h1>Welcome to Birdseye!</h1>
+    <SignInSide/>
   )
 }
 
