@@ -116,6 +116,7 @@ export default function SignInSide() {
             />
             <Router>
               <Button
+                style={{backgroundColor: '#ffffff', border: 'solid black 1px', borderRadius: '2px', height: '35px', fontSize: '10px', color: 'black'}}
                 component={Link} to="/tasks"
                 type="submit"
                 fullWidth
