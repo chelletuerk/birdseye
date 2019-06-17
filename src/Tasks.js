@@ -1,99 +1,68 @@
-import React, { memo } from 'react';
-import { AppBar, Toolbar, Typography, Paper, Grid,  } from '@material-ui/core';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Typography from '@material-ui/core/Typography';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
+import AppBar from './AppBar'
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100vh',
-    '& input': {
-      height: '25px',
-      color: 'black',
-      backgroundColor: 'white',
-      boxShadow: 'none',
-      border: 'solid lightgray 1px',
-      borderRadius: '1px',
-      marginTop: '-10px',
-      marginBottom: '12px',
-      paddingLeft: '15px',
-      fontFamily: 'Verdana, Geneva, sans-serif',
-      fontSize: '12px',
-    },
-    '& AppBar': {
-      backgroundColor: 'white',
-    },
-    '& button': {
-      color: 'black',
-      backgroundColor: 'white',
-      height: '35px',
-      fontSize: '10px',
-      boxShadow: 'none',
-      border: 'solid black 1px',
-      borderRadius: '1px',
-        '&:hover': {
-          color: 'white',
-          backgroundColor: 'black',
-        },
-    },
-      '& a': {
-        color: 'gray',
-        lineHeight: '6',
-        fontSize: '8px',
-        textDecoration: 'none',
-      },
-      '& h1': {
-        fontFamily: 'Verdana, Geneva, sans-serif',
-        fontSize: '20px',
-      },
-  },
-  image: {
-    backgroundImage: 'url(./images/loginImage.jpg)',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  },
-  paper: {
-    margin: theme.spacing(10, 10),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'left',
-    fontSize: '12px',
-    fontFamily: 'Verdana, Geneva, sans-serif',
-  },
-  avatar: {
-    margin: theme.spacing(-6, 0, 6),
-    height: '35px',
-    width: '40px',
-  },
-  form: {
     width: '100%',
-    marginTop: theme.spacing(6),
-  },
-  submit: {
-    margin: theme.spacing(2, 0, 2),
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
   },
 }));
 
+export default function CheckboxList() {
+  const classes = useStyles();
+  const [checked, setChecked] = React.useState([0]);
 
+  const handleToggle = value => () => {
+    const currentIndex = checked.indexOf(value);
+    const newChecked = [...checked];
 
-export default function Tasks(props) {
-const classes = useStyles()
-return (
-  <Paper
-    elevation={0}
-    style={{ padding: 0, margin: 0, backgroundColor: '#fafafa'}}
-  >
-    <AppBar
-      position="static"
-      style={{ height: 64, backgroundColor: '#ffffff', boxShadow: 'none' }}
-    >
-    <Toolbar style={{ height: 64, width: '75%', backgroundColor: '#061584', paddingTop: '10px', position: 'absolute', right: '0', top: '0' }}>
-      <Typography
-        color="inherit">
-        <img alt='' height='65px' width='70px'src='./images/whiteLogo.png'/>
-      </Typography>
-    </Toolbar>
-    </AppBar>
-    {props.children}
-  </Paper>
-  )
+    if (currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    setChecked(newChecked);
+  };
+
+  return (
+    <div>
+
+    <AppBar />
+    <List className={classes.root}>
+    <Typography style={{fontSize: '10px', backgroundColor: '#F6F8FF', color: '#7857FF', marginRight: '25px', height: '40px', textAlign: 'center', paddingTop: '30px'}}>
+      + CREATE TASK
+    </Typography>
+      {[0, 1, 2, 3].map(value => {
+        const labelId = `checkbox-list-label-${value}`;
+        return (
+          <ListItem key={value} role={undefined} dense button onClick={handleToggle(value)}>
+            <ListItemIcon>
+              <Checkbox
+                edge="start"
+                checked={checked.indexOf(value) !== -1}
+                tabIndex={-1}
+                disableRipple
+                inputProps={{ 'aria-labelledby': labelId }}
+              />
+            </ListItemIcon>
+            <ListItemText id={labelId} primary={`Test`}/>
+            <img style={{height: '20px', width: '18px'}} alt='' src='./images/taskIcon.png' />
+          </ListItem>
+        );
+      })}
+    </List>
+    </div>
+  );
 }
