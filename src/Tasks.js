@@ -1,14 +1,16 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import Checkbox from '@material-ui/core/Checkbox';
 import AppBar from './AppBar'
-import Divider from '@material-ui/core/Divider';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Today from './Today';
+import {
+  makeStyles,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+  Checkbox,
+  Divider,
+  FormControlLabel
+} from '@material-ui/core';
 
 
 const useStyles = makeStyles(theme => ({
@@ -25,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function CheckboxList() {
   const classes = useStyles();
-  
+
   return (
     <div>
     <AppBar />
