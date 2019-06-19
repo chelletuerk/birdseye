@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 import SignInSide from './SignInSide'
 import Tasks from './Tasks'
-import AppBar from './AppBar'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 function App() {
