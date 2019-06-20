@@ -15,14 +15,16 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    maxWidth: '335px',
+    minWidth: '335px',
+    // zIndex: '999',
+    // position: 'absolute',
+    // top: '55px',
+    position: 'relative',
     '& p': {
       fontSize: '.5rem',
     },
   },
-
 }));
 
 export default function CheckboxList() {
@@ -31,11 +33,11 @@ export default function CheckboxList() {
   return (
     <div>
     <AppBar />
-    <List className={classes.root}>
-    <Typography style={{fontSize: '10px', backgroundColor: '#F6F8FF', color: '#7857FF', marginRight: '25px', height: '40px', textAlign: 'center', paddingTop: '30px'}}>
+    <List className={classes.root} style={{margin: 'none'}}>
+    <Typography style={{fontSize: '10px', backgroundColor: '#F6F8FF', color: '#7857FF', height: '40px', textAlign: 'center', paddingTop: '30px'}}>
       + CREATE TASK
     </Typography>
-         <List component="nav" className={classes.root}>
+         <List component="nav" style={{width: '335px'}} className={classes.root}>
       <ListItem button>
         <FormControlLabel
           value="bottom"
@@ -220,8 +222,7 @@ export default function CheckboxList() {
       <Divider style={{width: '335px'}} />
     </List>
     </List>
-          <Today />
-
+    <Today />
     </div>
   )
 }
